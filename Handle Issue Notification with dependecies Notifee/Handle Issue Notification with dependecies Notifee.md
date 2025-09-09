@@ -1,5 +1,10 @@
 # Handle Issue Notification with dependecies Notifee
 
+- [Handle Issue Notification with dependecies Notifee](#handle-issue-notification-with-dependecies-notifee)
+  - [Double Notification](#double-notification)
+  - [Data-Only cannot resolve when the application is quit](#data-only-cannot-resolve-when-the-application-is-quit)
+    - [How to resolve](#how-to-resolve)
+
 ## Double Notification
 
 Ideally, to send notification you should send paylod as below:
@@ -12,8 +17,6 @@ Ideally, to send notification you should send paylod as below:
     "data": { "type": "informasi" }
   }
 }
-
-
 ```
 
 But, when you try create notification in RN and using library [Notifee](https://notifee.app/react-native/docs/overview) usually your application will get twice notification from Default Firebase Messaging and Notifee.
@@ -32,8 +35,8 @@ So that default Firebase Messaging will not trigger twice notification.
   }
 }
 ```
-## Data-Only cannot resolve when the application is quit
 
+## Data-Only cannot resolve when the application is quit
 
 When i send notification Data-Only and set **priority high**. Notification failed to show when application is quit.
 
@@ -49,20 +52,20 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        
+
         // handle data-only messages here
         if (remoteMessage.data.isNotEmpty()) {
             Log.d("MyFirebaseMsgService", "Message data payload: ${remoteMessage.data}")
-           
+
         }
         // please, don`t call super.onMessageReceived() to prevent show notification default
     }
-   
+
 }
 ```
 
-After that, implemetation `MyFirebaseMessagingService.kt`  in `AndroidManifest.xml`
-like this: 
+After that, implemetation `MyFirebaseMessagingService.kt` in `AndroidManifest.xml`
+like this:
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -79,10 +82,10 @@ like this:
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         tools:ignore="GoogleAppIndexingWarning">
-        
+
         <!-- start : implementation service firebase messaging  -->
         <service
-        android:name=".MyFirebaseMessagingService" 
+        android:name=".MyFirebaseMessagingService"
         android:exported="false">
         <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -104,16 +107,6 @@ like this:
 
 ```
 
-Before you run your app. Please make sure reclean your gradle  `cd android && ./gradlew clean` and run again `npm run-android`
+Before you run your app. Please make sure reclean your gradle `cd android && ./gradlew clean` and run again `npm run-android`
 
-
-
-
-
->`Harun Al rosyid`
-
-
-
-
-
-
+> `Harun Al rosyid`

@@ -1,6 +1,6 @@
-# Handle Issue Notification with dependecies Notifee
+# Handle Issue Double Notification Notifee
 
-- [Handle Issue Notification with dependecies Notifee](#handle-issue-notification-with-dependecies-notifee)
+- [Handle Issue Double Notification Notifee](#handle-issue-double-notification-notifee)
   - [Double Notification](#double-notification)
   - [Data-Only cannot resolve when the application is quit](#data-only-cannot-resolve-when-the-application-is-quit)
     - [How to resolve](#how-to-resolve)

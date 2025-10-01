@@ -47,27 +47,34 @@ npm run build
 
 ```bash
 # 1) Drop all native build artifacts & caches
-rm -rf android/app/build        android/app/.cxx        android/build        android/.gradle
+rm -rf android/app/build
+rm -rf android/app/.cxx
+rm -rf android/build
+rm -rf android/.gradle
 
 # 2) Fresh install JavaScript deps
 rm -rf node_modules
 npm install react-native-config@1.5.3
 npm i
 
+
 # 3) Reset watchman (optional but recommended)
 watchman watch-del-all || true
 
+
 # 4) Stop any lingering Gradle daemons
-( cd android && ./gradlew --stop )
+cd android && ./gradlew --stop 
+cd ..
+
 
 # 5) Run your project scripts
 npm run clean
-npm run android:outer
-npm run build:outer
+npm run android
+npm run build
 ```
 
 > Notes:
-> - Replace `android:outer` / `build:outer` with your actual script names if they differ.
+> - Replace `android` / `build` with your actual script names if they differ.
 > - If you use **Yarn**: change `npm i` → `yarn`, and `npm install ...` → `yarn add ...`.
 > - If you use **pnpm**: `pnpm add react-native-config@1.5.3`.
 

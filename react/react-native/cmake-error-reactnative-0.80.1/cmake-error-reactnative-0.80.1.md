@@ -8,18 +8,19 @@
 
 ```bash
 # from project root
-rm -rf android/app/build        android/app/.cxx        android/build        android/.gradle        node_modules
-
+rm -rf android/app/build
+rm -rf android/app/.cxx
+rm -rf android/build
+rm -rf android/.gradle
+rm -rf node_modules
 npm install react-native-config@1.5.3
 npm i
-
 watchman watch-del-all || true
-
-( cd android && ./gradlew --stop )
-
+cd android && ./gradlew --stop 
+cd ..
 npm run clean
-npm run android:outer
-npm run build:outer
+npm run android
+npm run build
 ```
 
 ---
